@@ -4,6 +4,8 @@
   <img src="./favicon.ico" alt="Vue3 Lint Config Banner" width="180" />
 </p>
 
+<h1 align="center"><b>@hhfe/vue3-lint-config</b></h1>
+
 <p align="center">
   <a href="https://www.npmjs.com/package/@hhfe/vue3-lint-config"><img src="https://img.shields.io/npm/v/@hhfe/vue3-lint-config?color=42b883&label=Npm&logo=npm" alt="Npm"></a>
   <a href="https://www.npmjs.com/package/@hhfe/vue3-lint-config"><img src="https://img.shields.io/npm/dm/@hhfe/vue3-lint-config?label=Downloads&logo=npm" alt="Downloads"></a>
