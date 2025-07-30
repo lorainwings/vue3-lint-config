@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./favicon.ico" alt="Vue3 Lint Config Banner" width="180" />
+  <img src="./favicon.ico" alt="Vue3 Lint Config Banner" width="280" />
 </p>
 
 <h1 align="center"><b>@hhfe/vue3-lint-config</b></h1>
