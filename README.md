@@ -1,250 +1,216 @@
 # @hhfe/vue3-lint-config
 
-[![npm](https://img.shields.io/npm/v/@hhfe/vue3-lint-config?color=444&label=)](https://npmjs.com/package/@hhfe/vue3-lint-config)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lorainwings/vue3-lint-config/main/.github/assets/banner.png" alt="Vue3 Lint Config Banner" width="600" />
+</p>
 
-HHFE Vue3 项目的 ESLint、Stylelint、Prettier、Commitlint 和 Lint-staged 配置集合。
+<p align="center">
+  <a href="https://www.npmjs.com/package/@hhfe/vue3-lint-config"><img src="https://img.shields.io/npm/v/@hhfe/vue3-lint-config?color=42b883&label=Npm&logo=npm" alt="Npm"></a>
+  <a href="https://www.npmjs.com/package/@hhfe/vue3-lint-config"><img src="https://img.shields.io/npm/dm/@hhfe/vue3-lint-config?label=Downloads&logo=npm" alt="Downloads"></a>
+  <a href="https://github.com/lorainwings/vue3-lint-config/blob/master/LICENSE"><img src="https://img.shields.io/github/license/lorainwings/vue3-lint-config?color=blue&label=License&logo=open-source-initiative" alt="License"></a>
+  <img src="https://img.shields.io/badge/ESLint-9.x-purple?logo=eslint&logoColor=white" alt="ESLint">
+  <img src="https://img.shields.io/badge/Stylelint-16.x-43b984?logo=stylelint&logoColor=white" alt="Stylelint">
+  <img src="https://img.shields.io/badge/Prettier-3.x-f7b93e?logo=prettier&logoColor=white" alt="Prettier">
+  <img src="https://img.shields.io/badge/Commitlint-19.x-6c6cff?logo=commitlint&logoColor=white" alt="Commitlint">
+  <img src="https://img.shields.io/badge/Lint--staged-15.x-ef6b6b?logo=lintstaged&logoColor=white" alt="Lint-staged">
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178c6?logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Pnpm-10.x-f69220?logo=pnpm&logoColor=white" alt="Pnpm">
+  <img src="https://img.shields.io/badge/Vitest-2.x-6e9f18?logo=vitest&logoColor=white" alt="Vitest">
+  <img src="https://img.shields.io/badge/Tsdown-0.13.x-007acc?logo=typescript&logoColor=white" alt="Tsdown">
+  <img src="https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white" alt="Node.js">
+</p>
 
-## 特性
+> **一站式前端代码质量解决方案，集成 ESLint、Stylelint、Prettier、Commitlint、Lint-staged，专为 Vue3/TypeScript 项目设计，灵活、专业、可扩展。**
 
-- 🚀 开箱即用的 Vue3 + TypeScript 配置
-- 🎨 自动格式化（无需 Prettier）
-- 📦 支持 SCSS、Less、Stylus 等样式文件
-- 🔧 合理的默认配置，最佳实践
-- 🎯 针对 Vue3 项目优化的规则
-- 📝 完整的 Git 提交规范
-- ⚡ 基于 ESLint Flat Config，易于组合
-- 🛠️ 支持多种工具链集成
+---
 
-## 安装
+## ✨ 特性亮点
+
+- 🚀 **开箱即用**：一行配置，集成多工具最佳实践
+- 🎨 **全方位格式化**：支持 JS/TS/Vue/样式/Markdown/JSON 等
+- 🛡️ **严格规范**：基于业界主流规则，兼容团队自定义
+- 🧩 **高度可扩展**：支持独立/组合/链式调用，适配多场景
+- 🛠️ **现代架构**：基于 ESLint Flat Config，支持最新生态
+- 📦 **Monorepo 友好**：适配多包管理与多项目结构
+- 📝 **完善提交规范**：内置 Conventional Commits 支持
+- ⚡ **极速体验**：极致性能，自动检测依赖与环境
+
+---
+
+## 🚀 安装与快速开始
+
+### 1. 安装依赖
 
 ```bash
-pnpm add -D @hhfe/vue3-lint-config
+pnpm add -D @hhfe/vue3-lint-config eslint stylelint prettier @commitlint/cli lint-staged
 ```
 
-## 使用方法
+### 2. 快速集成（推荐）
 
-### 推荐：分别在各自配置文件中按需引入
+在项目根目录新建 `lint.config.js`：
 
-#### 1. ESLint
+```js
+import { defineLintConfig } from '@hhfe/vue3-lint-config'
+
+export default defineLintConfig({
+  eslint: true,
+  stylelint: true,
+  prettier: true,
+  commitlint: true,
+  lintStaged: true,
+})
+```
+
+### 3. 独立工具配置（按需引入）
+
+- `eslint.config.js`
+- `stylelint.config.js`
+- `prettier.config.js`
+- `commitlint.config.js`
+- `lint-staged.config.js`
+
+详见 [examples/](./examples) 目录。
+
+---
+
+## 🧑‍💻 用法详解
+
+### 1. 独立配置
 
 ```js
 // eslint.config.js
 import { defineEslintConfig } from '@hhfe/vue3-lint-config/eslint'
-
 export default defineEslintConfig({
-  rules: {
-    'no-console': 'off', // 覆盖默认规则
-  },
-  // 你也可以传递 plugins、extends、overrides 等
+  rules: { 'no-console': 'warn' },
 })
 ```
 
-#### 2. Stylelint
+### 2. 组合配置
 
 ```js
-// stylelint.config.js
-import { defineStylelintConfig } from '@hhfe/vue3-lint-config/stylelint'
-
-export default defineStylelintConfig({
-  rules: {
-    'color-hex-case': 'upper', // 覆盖默认规则
-  },
-  // 你也可以传递 extends、plugins、overrides 等
-})
-```
-
-#### 3. Prettier
-
-```js
-// prettier.config.js
-import { definePrettierConfig } from '@hhfe/vue3-lint-config/prettier'
-
-export default definePrettierConfig({
-  semi: true, // 覆盖默认规则
-})
-```
-
-#### 4. Commitlint
-
-```js
-// commitlint.config.js
-import { defineCommitlintConfig } from '@hhfe/vue3-lint-config/commitlint'
-
-export default defineCommitlintConfig({
-  rules: {
-    'header-max-length': [2, 'always', 100],
-  },
-})
-```
-
-#### 5. Lint-staged
-
-```js
-// lint-staged.config.js
-import { defineLintStagedConfig } from '@hhfe/vue3-lint-config/lint-staged'
-
-export default defineLintStagedConfig({
-  '*.js': ['eslint --fix'],
-  '*.css': ['stylelint --fix'],
-})
-```
-
-### 一键全量配置（适合 monorepo 或统一管理）
-
-```js
-// lint.config.js
 import { defineLintConfig } from '@hhfe/vue3-lint-config'
+export default defineLintConfig({
+  eslint: { vue: true, typescript: true },
+  stylelint: { scss: true, prettier: true },
+  prettier: { semi: false },
+  commitlint: true,
+  lintStaged: true,
+})
+```
 
+### 3. 高级用法（链式/自定义/覆盖）
+
+```js
+import { defineLintConfig } from '@hhfe/vue3-lint-config'
 export default defineLintConfig({
   eslint: {
-    rules: {
-      'no-console': 'off',
+    vue: true,
+    typescript: true,
+    overrides: {
+      'vue/max-attributes-per-line': ['error', { singleline: 3 }],
     },
   },
   stylelint: {
-    rules: {
+    scss: true,
+    overrides: {
       'color-hex-case': 'upper',
     },
   },
-  prettier: {
-    semi: true,
-  },
-  commitlint: {
-    rules: {
-      'header-max-length': [2, 'always', 100],
-    },
-  },
-  lintStaged: {
-    '*.js': ['eslint --fix'],
-    '*.css': ['stylelint --fix'],
-  },
+  ignores: ['dist/', 'node_modules/'],
 })
 ```
 
 ---
 
-## 配置说明
+## 🖥️ IDE 集成与自动修复
 
-### ESLint 配置
+### VS Code
 
-基于 `@antfu/eslint-config`，针对 Vue3 项目进行了优化：
-
-- Vue3 语法支持
-- TypeScript 严格模式
-- 导入排序和循环检测
-- 代码风格统一
-- 最佳实践规则
-
-### Stylelint 配置
-
-支持多种样式文件格式：
-
-- SCSS/Sass
-- Less
-- Stylus
-- CSS
-- Vue 单文件组件样式
-
-特性：
-
-- 属性排序
-- 选择器命名规范
-- 兼容性前缀处理
-- 与 Prettier 集成
-
-### Prettier 配置
-
-统一的代码格式化规则：
-
-- 单引号
-- 无分号
-- 2 空格缩进
-- 尾随逗号
-- 行宽限制
-
-### Commitlint 配置
-
-基于 Conventional Commits 规范：
-
-- 类型枚举：feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
-- 大小写规范
-- 长度限制
-- 自定义规则支持
-
-### Lint-staged 配置
-
-Git 提交前的代码检查：
-
-- 自动修复 ESLint 问题
-- 自动格式化样式文件
-- 统一代码风格
-
-## 脚本配置
-
-在 `package.json` 中添加以下脚本：
+1. 安装 [ESLint 插件](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+2. `.vscode/settings.json` 推荐配置：
 
 ```json
 {
-  "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "stylelint": "stylelint \"**/*.{vue,less,postcss,css,scss}\"",
-    "stylelint:fix": "stylelint \"**/*.{vue,less,postcss,css,scss}\" --fix",
-    "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write .",
-    "lint:all": "npm run lint:fix && npm run stylelint:fix && npm run prettier:fix"
-  }
-}
-```
-
-## Git Hooks 配置
-
-使用 `simple-git-hooks` 和 `lint-staged`：
-
-```json
-{
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
+  "eslint.experimental.useFlatConfig": true,
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
-  "lint-staged": {
-    "*": "eslint --fix"
-  }
+  "eslint.validate": [
+    "javascript", "typescript", "vue", "json", "yaml", "markdown", "css", "scss", "less"
+  ]
 }
 ```
 
-## 依赖要求
+### WebStorm/JetBrains
 
-### 必需依赖
+- 启用 ESLint，选择“自动检测配置”或手动指定 `eslint.config.js`
 
-```bash
-pnpm add -D eslint stylelint prettier @commitlint/cli lint-staged
-```
+### 其他编辑器
 
-### 可选依赖
+- 参考 ESLint/Stylelint/Prettier 官方插件配置
 
-```bash
-pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
-pnpm add -D eslint-plugin-vue vue-eslint-parser
-pnpm add -D stylelint-config-standard stylelint-config-recess-order
-pnpm add -D stylelint-config-recommended-scss stylelint-config-recommended-vue
-pnpm add -D stylelint-scss stylelint-order
-pnpm add -D @commitlint/config-conventional
-pnpm add -D simple-git-hooks
-```
+---
 
-## 许可证
+## ⚙️ 配置项详解
 
-MIT License
+### 支持的配置项（OptionsConfig）
 
-## 贡献
+- `eslint`：`boolean | object`，支持 vue/typescript/react/nextjs/svelte/solid/astro/unocss/markdown/yaml/toml/jsonc/jsdoc/jsx/node/test/perfectionist/imports/unicorn/regexp/command/comments/disables/ignores/stylistic/sort/pnpm
+- `stylelint`：`boolean | object`，支持 scss/vue/order/prettier
+- `prettier`：`boolean | object`，支持 semi/singleQuote/tabWidth/useTabs/trailingComma
+- `commitlint`：`boolean | object`，支持 conventional/customRules
+- `lintStaged`：`boolean | object`，支持 eslint/stylelint/prettier
+- `gitignore`、`autoRenamePlugins`、`componentExts`、`ignores`、`overrides`
 
-欢迎提交 Issue 和 Pull Request！
+详见 [src/types.ts](./src/types.ts) 类型定义。
 
-## 更新日志
+---
 
-### v1.0.0
+## 🏆 最佳实践
 
-- 初始版本发布
-- 支持 Vue3 + TypeScript
-- 集成 ESLint、Stylelint、Prettier、Commitlint、Lint-staged
-- 基于 ESLint Flat Config 架构
+- 推荐分开维护各工具配置，便于团队协作和定制
+- Monorepo 场景建议统一管理配置，提升一致性
+- 配合 simple-git-hooks/lint-staged 实现自动化代码质量保障
+- 充分利用 overrides/ignores 灵活适配项目需求
+
+---
+
+## ❓ 常见问题（FAQ）
+
+- **Q: 如何只用 Prettier/Stylelint/ESLint 某一项？**
+  - 只需在配置中传入对应项为 true 或对象参数即可
+- **Q: 如何自定义规则？**
+  - 通过 rules/overrides/customRules 传递即可，见类型定义
+- **Q: 依赖冲突怎么办？**
+  - 请确保 peerDependencies 与实际依赖版本一致
+- **Q: Flat Config 下 .eslintignore 不生效？**
+  - 请使用 `ignores` 配置项
+- **Q: 如何在 CI/CD 中集成？**
+  - 推荐在 CI 脚本中执行 `pnpm lint`/`pnpm lint:fix` 等命令
+
+---
+
+## 🤝 贡献指南
+
+欢迎任何形式的贡献！
+
+- 提交 Issue 反馈 bug 或建议
+- 提交 Pull Request 优化规则或文档
+- 参与讨论，共建更专业的前端规范生态
+
+---
+
+## 📦 版本策略
+
+- 遵循 [SemVer](https://semver.org/lang/zh-CN/) 语义化版本管理
+- 规则变更/依赖升级视为非破坏性更新，重大架构调整视为 breaking change
+- 每次发布均附详细 [CHANGELOG](./CHANGELOG.md)
+
+---
+
+## 📝 许可证
+
+MIT License © HHFE Team
