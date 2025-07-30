@@ -1,5 +1,3 @@
-# @hhfe/vue3-lint-config
-
 <p align="center">
   <img src="./favicon.ico" alt="Vue3 Lint Config Banner" width="180" />
 </p>
