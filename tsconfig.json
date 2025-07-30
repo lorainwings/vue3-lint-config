@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "baseUrl": ".",
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "outDir": "./dist",
+        "rootDir": "."
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "./fixtures/**/*.*",
+        "./_fixtures/**/*.*",
+        "./dist/**/*.*",
+        "./node_modules/**/*.*"
+    ]
+}

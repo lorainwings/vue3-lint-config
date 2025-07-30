@@ -1,0 +1,89 @@
+{
+  "name": "@hhfe/vue3-lint-config",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "HHFE Vue3 ESLint, Stylelint, Prettier, Commitlint, and Lint-staged configuration",
+  "author": "HHFE Team <dev@hhfe.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/hhfe/vue3-lint-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hhfe/vue3-lint-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hhfe/vue3-lint-config/issues"
+  },
+  "keywords": [
+    "eslint-config",
+    "stylelint-config",
+    "prettier-config",
+    "commitlint-config",
+    "lint-staged-config",
+    "vue3",
+    "typescript",
+    "scss"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./eslint": "./dist/eslint.js",
+    "./stylelint": "./dist/stylelint.js",
+    "./prettier": "./dist/prettier.js",
+    "./commitlint": "./dist/commitlint.js",
+    "./lint-staged": "./dist/lint-staged.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": "./bin/index.js",
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "stub": "tsdown",
+    "dev": "tsc --watch",
+    "watch": "tsdown --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "gen": "tsx scripts/typegen.ts && tsx scripts/versiongen.ts",
+    "prepack": "npm run build",
+    "release": "bumpp && pnpm publish",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "echo 'Package prepared'"
+  },
+  "peerDependencies": {
+    "@commitlint/cli": "^19.0.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "stylelint": "^16.0.0"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint-plugin-vue": "^9.33.0",
+    "globals": "^16.2.0",
+    "vue-eslint-parser": "^9.4.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "3.3.1",
+    "@eslint/js": "9.32.0",
+    "@types/node": "^20.12.10",
+    "bumpp": "^10.0.0",
+    "eslint": "^9.29.0",
+    "lint-staged": "^15.5.2",
+    "simple-git-hooks": "^2.12.0",
+    "tsdown": "^0.13.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "8.38.0",
+    "vitest": "^2.0.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
