@@ -1,7 +1,7 @@
 # @hhfe/vue3-lint-config
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/lorainwings/vue3-lint-config/main/.github/assets/banner.png" alt="Vue3 Lint Config Banner" width="600" />
+  <img src="./favicon.ico" alt="Vue3 Lint Config Banner" width="600" />
 </p>
 
 <p align="center">
