@@ -1,7 +1,8 @@
 import { defineLintStagedConfig } from '@hhfe/vue3-lint-config/lint-staged'
 
+// 使用默认配置（推荐）
 export default defineLintStagedConfig({
-  '*.js': ['eslint --fix'],
-  '*.css': ['stylelint --fix'],
-  '*.md': ['prettier --write'],
-}) 
+  eslint: true,
+  stylelint: true,
+  prettier: true,
+})

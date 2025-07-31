@@ -31,3 +31,12 @@ export function createLintStagedConfig(options: LintStagedConfigOptions = {}): L
 
   return config
 }
+
+/**
+ * Define Lint-staged configuration with HHFE defaults
+ * @param options User options to override defaults
+ * @returns Lint-staged configuration object
+ */
+export function defineLintStagedConfig(options: LintStagedConfigOptions = {}): LintStagedConfig {
+  return createLintStagedConfig(options)
+}

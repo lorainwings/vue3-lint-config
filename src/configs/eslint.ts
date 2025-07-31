@@ -104,3 +104,12 @@ export function createESLintConfig(options: ESLintConfigOptions = {}): Linter.Fl
 
   return configs
 }
+
+/**
+ * Define ESLint configuration with HHFE defaults
+ * @param options User options to override defaults
+ * @returns ESLint flat config array
+ */
+export function defineEslintConfig(options: ESLintConfigOptions = {}): Linter.FlatConfig[] {
+  return createESLintConfig(options)
+}

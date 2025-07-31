@@ -5,5 +5,6 @@ export default defineStylelintConfig({
     'color-hex-case': 'upper',
     'block-no-empty': null,
   },
-  // 你也可以传递 extends、plugins、overrides 等
+  // 你也可以传递其他 Stylelint 配置选项
+  // 如 extends、plugins、overrides、ignoreFiles 等
 }) 

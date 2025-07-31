@@ -142,3 +142,12 @@ export function createStylelintConfig(options: StylelintConfigOptions = {}): Sty
   return config
 }
  
+/**
+ * Define Stylelint configuration with HHFE defaults
+ * @param options User options to override defaults
+ * @returns Stylelint configuration object
+ */
+export function defineStylelintConfig(options: StylelintConfigOptions = {}): StylelintConfig {
+  return createStylelintConfig(options)
+}
+ 

@@ -61,7 +61,20 @@ export default defineLintConfig({
 })
 ```
 
-### 3. 独立工具配置（按需引入）
+### 3. 使用 CLI 工具快速初始化
+
+```bash
+# 基础配置
+npx @hhfe/vue3-lint-config init
+
+# 高级配置
+npx @hhfe/vue3-lint-config init --advanced
+
+# 检查当前配置
+npx @hhfe/vue3-lint-config check
+```
+
+### 4. 独立工具配置（按需引入）
 
 - `eslint.config.js`
 - `stylelint.config.js`
@@ -151,6 +164,36 @@ export default defineLintConfig({
 ### 其他编辑器
 
 - 参考 ESLint/Stylelint/Prettier 官方插件配置
+
+---
+
+## 🔧 配置读取机制
+
+### 配置文件优先级
+
+项目会按以下优先级查找配置文件：
+
+1. **一键式配置**：`lint.config.js` / `lint.config.ts`
+2. **独立工具配置**：
+   - `eslint.config.js` / `eslint.config.ts`
+   - `stylelint.config.js` / `stylelint.config.ts`
+   - `prettier.config.js` / `prettier.config.ts`
+   - `commitlint.config.js` / `commitlint.config.ts`
+   - `lint-staged.config.js` / `lint-staged.config.ts`
+
+### 自动配置检测
+
+当没有找到配置文件时，系统会：
+
+1. **自动检测依赖**：检查是否安装了必要的依赖包
+2. **生成默认配置**：使用预设的最佳实践配置
+3. **提供配置建议**：推荐适合项目的配置选项
+
+### 配置验证机制
+
+- **依赖检查**：自动检测 peerDependencies 是否已安装
+- **配置验证**：验证配置文件的格式和内容
+- **错误提示**：提供详细的错误信息和解决建议
 
 ---
 

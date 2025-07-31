@@ -51,3 +51,12 @@ export function createCommitlintConfig(options: CommitlintConfigOptions = {}): C
 
   return config
 }
+
+/**
+ * Define Commitlint configuration with HHFE defaults
+ * @param options User options to override defaults
+ * @returns Commitlint configuration object
+ */
+export function defineCommitlintConfig(options: CommitlintConfigOptions = {}): CommitlintConfig {
+  return createCommitlintConfig(options)
+}

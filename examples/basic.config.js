@@ -1,6 +1,6 @@
-import hhfe from '@hhfe/vue3-lint-config'
+import { defineLintConfig } from '@hhfe/vue3-lint-config'
 
-export default hhfe({
+export default defineLintConfig({
   eslint: true,
   stylelint: true,
   prettier: true,

@@ -64,3 +64,12 @@ export function createPrettierConfig(options: PrettierConfigOptions = {}): Prett
     ],
   }
 }
+
+/**
+ * Define Prettier configuration with HHFE defaults
+ * @param options User options to override defaults
+ * @returns Prettier configuration object
+ */
+export function definePrettierConfig(options: PrettierConfigOptions = {}): PrettierConfig {
+  return createPrettierConfig(options)
+}

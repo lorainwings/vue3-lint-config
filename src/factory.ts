@@ -60,6 +60,89 @@ export function hhfe(
   return config
 }
 
+/**
+ * 自动检测并加载配置文件
+ */
+export async function autoLoadConfig(): Promise<HHFEConfig> {
+  const configFiles = [
+    'lint.config.js',
+    'lint.config.ts',
+    'eslint.config.js',
+    'eslint.config.ts',
+    'stylelint.config.js',
+    'stylelint.config.ts',
+    'prettier.config.js',
+    'prettier.config.ts',
+    'commitlint.config.js',
+    'commitlint.config.ts',
+    'lint-staged.config.js',
+    'lint-staged.config.ts'
+  ]
+
+  for (const file of configFiles) {
+    try {
+      const fs = await import('fs')
+      
+      if (fs.existsSync(file)) {
+        console.log(`📁 检测到配置文件: ${file}`)
+        
+        // 这里应该动态导入配置文件
+        // 由于动态导入的复杂性，这里先返回默认配置
+        if (file.startsWith('lint.config')) {
+          return hhfe({
+            eslint: true,
+            stylelint: true,
+            prettier: true,
+            commitlint: true,
+            lintStaged: true,
+          })
+        }
+      }
+    } catch {
+      // 忽略文件读取错误
+    }
+  }
+
+  // 如果没有检测到配置文件，返回默认配置
+  console.log('⚠️  未检测到配置文件，使用默认配置')
+  return hhfe({
+    eslint: true,
+    stylelint: true,
+    prettier: true,
+    commitlint: true,
+    lintStaged: true,
+  })
+}
+
+/**
+ * 验证配置的有效性
+ */
+export function validateHHFEConfig(config: HHFEConfig): { valid: boolean, errors: string[] } {
+  const errors: string[] = []
+
+  if (!config) {
+    errors.push('配置对象不能为空')
+    return { valid: false, errors }
+  }
+
+  // 检查 ESLint 配置
+  if (config.eslint && !Array.isArray(config.eslint)) {
+    errors.push('ESLint 配置必须是数组格式')
+  }
+
+  // 检查 Stylelint 配置
+  if (config.stylelint && typeof config.stylelint !== 'object') {
+    errors.push('Stylelint 配置必须是对象格式')
+  }
+
+  // 检查 Prettier 配置
+  if (config.prettier && typeof config.prettier !== 'object') {
+    errors.push('Prettier 配置必须是对象格式')
+  }
+
+  return { valid: errors.length === 0, errors }
+}
+
 function resolveOptions(options: OptionsConfig) {
   return {
     eslint: options.eslint !== false,

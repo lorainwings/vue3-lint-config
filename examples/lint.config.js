@@ -5,6 +5,11 @@ export default defineLintConfig({
   eslint: {
     vue: true,
     typescript: true,
+    // 可以添加自定义规则
+    overrides: {
+      'no-console': 'warn',
+      'no-debugger': 'error',
+    },
   },
 
   // Stylelint 配置
@@ -20,7 +25,6 @@ export default defineLintConfig({
     semi: false,
     singleQuote: true,
     tabWidth: 2,
-    useTabs: false,
     trailingComma: 'es5',
   },
 
@@ -43,9 +47,5 @@ export default defineLintConfig({
   gitignore: true,
   autoRenamePlugins: true,
   componentExts: [],
-  ignores: ['dist/', 'node_modules/'],
-  overrides: {
-    'no-console': 'warn',
-    'no-debugger': 'warn',
-  },
-})
+  ignores: ['dist/', 'node_modules/', '*.d.ts'],
+}) 
